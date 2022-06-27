@@ -8,7 +8,7 @@ async function fetchAllDishes() {
 
         return {
             successful: true,
-            data: response.data
+            data: response.data.data
         };
     } catch (error) {
         return {
@@ -24,7 +24,7 @@ async function fetchDish(id) {
 
         return {
             successful: true,
-            data: response.data
+            data: response.data.data
         };
     } catch (error) {
         return {
@@ -36,11 +36,11 @@ async function fetchDish(id) {
 
 async function upsertDish(dish) {
     try {
-        await axios.put(`${apiBaseAddress}/dishes`, dish);
+        const response = await axios.put(`${apiBaseAddress}/dishes`, dish);
 
         return {
             successful: true,
-            message: 'Dish successfully added/updated.'
+            data: response.data.data
         };
     } catch (error) {
         return {
